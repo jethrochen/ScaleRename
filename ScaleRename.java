@@ -17,8 +17,9 @@ public class ScaleRename extends JFrame {
 	{
 		super("ScaleRename");
 		
+		GridLayout mainLayout = new GridLayout(4, 2);
 		Container container = getContentPane();
-		container.setLayout(new FlowLayout());
+		container.setLayout(mainLayout);
 		
 		labelPath = new JLabel("Input directory");
 		container.add(labelPath);
@@ -65,7 +66,15 @@ public class ScaleRename extends JFrame {
 				dir = new File(path);
 				filelist = dir.list();
 				for (int i = 0; i < filelist.length; i++) {
+					String oldFilePath = dir.getPath() + "\\" + filelist[i];
+					String newFilePath = dir.getPath() + "\\" + prefix + 
+							i + subfix;
+					File oldFile = new File(oldFilePath);
+					File newFile = new File(newFilePath);
+					oldFile.renameTo(newFile);
+					//System.out.println(dir.getPath());
 					System.out.println(filelist[i]);
+					System.out.println(newFilePath);
 				}
 			}
 		}
